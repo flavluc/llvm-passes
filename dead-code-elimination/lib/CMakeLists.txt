@@ -10,11 +10,10 @@ include_directories(${LLVM_INCLUDE_DIRS})
 
 string (REPLACE "\n" " " LLVM_CONFIG "${LLVM_CONFIG_N}")
 
-set (CMAKE_CXX_FLAGS "-O3 -g ${LLVM_CONFIG} -undefined dynamic_lookup")
+set (CMAKE_CXX_FLAGS "-O3 -std=c++14 -fno-rtti -g ${LLVM_CONFIG} -undefined dynamic_lookup")
 
 include_directories (include)
 add_library (RangeAnalysis SHARED
 RangeAnalysis/RangeAnalysis.cpp
 RangeAnalysis/vSSA.cpp
-RangeAnalysis/ClientRA.cpp
 )

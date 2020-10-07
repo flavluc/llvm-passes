@@ -1,6 +1,0 @@
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/rebuild_cache.dir
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/edit_cache.dir
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/vSSA.dir
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/RangeAnalysis.dir
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/DeadCodeElimination.dir
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/build/CMakeFiles/intrinsics_gen.dir
