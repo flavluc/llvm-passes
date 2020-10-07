@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC  -fno-rtti -shared -Wl,-soname,libDeadCodeElimination.so -o libDeadCodeElimination.so CMakeFiles/DeadCodeElimination.dir/DeadCodeElimination.cpp.o CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.o CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.o 
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libDeadCodeElimination.so -o libDeadCodeElimination.so CMakeFiles/DeadCodeElimination.dir/DeadCodeElimination.cpp.o 

@@ -1,7 +1,5 @@
 file(REMOVE_RECURSE
   "CMakeFiles/DeadCodeElimination.dir/DeadCodeElimination.cpp.o"
-  "CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.o"
-  "CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.o"
   "libDeadCodeElimination.pdb"
   "libDeadCodeElimination.so"
 )

@@ -130,6 +130,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named vSSA
+
+# Build rule for target.
+vSSA: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 vSSA
+.PHONY : vSSA
+
+# fast build rule for target.
+vSSA/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vSSA.dir/build.make CMakeFiles/vSSA.dir/build
+.PHONY : vSSA/fast
+
+#=============================================================================
+# Target rules for targets named RangeAnalysis
+
+# Build rule for target.
+RangeAnalysis: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 RangeAnalysis
+.PHONY : RangeAnalysis
+
+# fast build rule for target.
+RangeAnalysis/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RangeAnalysis.dir/build.make CMakeFiles/RangeAnalysis.dir/build
+.PHONY : RangeAnalysis/fast
+
+#=============================================================================
 # Target rules for targets named DeadCodeElimination
 
 # Build rule for target.
@@ -141,6 +167,19 @@ DeadCodeElimination: cmake_check_build_system
 DeadCodeElimination/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/build
 .PHONY : DeadCodeElimination/fast
+
+#=============================================================================
+# Target rules for targets named intrinsics_gen
+
+# Build rule for target.
+intrinsics_gen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 intrinsics_gen
+.PHONY : intrinsics_gen
+
+# fast build rule for target.
+intrinsics_gen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/intrinsics_gen.dir/build.make CMakeFiles/intrinsics_gen.dir/build
+.PHONY : intrinsics_gen/fast
 
 DeadCodeElimination.o: DeadCodeElimination.cpp.o
 
@@ -175,7 +214,7 @@ lib/RangeAnalysis.o: lib/RangeAnalysis.cpp.o
 
 # target to build an object file
 lib/RangeAnalysis.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RangeAnalysis.dir/build.make CMakeFiles/RangeAnalysis.dir/lib/RangeAnalysis.cpp.o
 .PHONY : lib/RangeAnalysis.cpp.o
 
 lib/RangeAnalysis.i: lib/RangeAnalysis.cpp.i
@@ -184,7 +223,7 @@ lib/RangeAnalysis.i: lib/RangeAnalysis.cpp.i
 
 # target to preprocess a source file
 lib/RangeAnalysis.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RangeAnalysis.dir/build.make CMakeFiles/RangeAnalysis.dir/lib/RangeAnalysis.cpp.i
 .PHONY : lib/RangeAnalysis.cpp.i
 
 lib/RangeAnalysis.s: lib/RangeAnalysis.cpp.s
@@ -193,7 +232,7 @@ lib/RangeAnalysis.s: lib/RangeAnalysis.cpp.s
 
 # target to generate assembly for a file
 lib/RangeAnalysis.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/RangeAnalysis.dir/build.make CMakeFiles/RangeAnalysis.dir/lib/RangeAnalysis.cpp.s
 .PHONY : lib/RangeAnalysis.cpp.s
 
 lib/vSSA.o: lib/vSSA.cpp.o
@@ -202,7 +241,7 @@ lib/vSSA.o: lib/vSSA.cpp.o
 
 # target to build an object file
 lib/vSSA.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vSSA.dir/build.make CMakeFiles/vSSA.dir/lib/vSSA.cpp.o
 .PHONY : lib/vSSA.cpp.o
 
 lib/vSSA.i: lib/vSSA.cpp.i
@@ -211,7 +250,7 @@ lib/vSSA.i: lib/vSSA.cpp.i
 
 # target to preprocess a source file
 lib/vSSA.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vSSA.dir/build.make CMakeFiles/vSSA.dir/lib/vSSA.cpp.i
 .PHONY : lib/vSSA.cpp.i
 
 lib/vSSA.s: lib/vSSA.cpp.s
@@ -220,7 +259,7 @@ lib/vSSA.s: lib/vSSA.cpp.s
 
 # target to generate assembly for a file
 lib/vSSA.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/DeadCodeElimination.dir/build.make CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vSSA.dir/build.make CMakeFiles/vSSA.dir/lib/vSSA.cpp.s
 .PHONY : lib/vSSA.cpp.s
 
 # Help Target
@@ -231,7 +270,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... intrinsics_gen"
 	@echo "... DeadCodeElimination"
+	@echo "... RangeAnalysis"
+	@echo "... vSSA"
 	@echo "... DeadCodeElimination.o"
 	@echo "... DeadCodeElimination.i"
 	@echo "... DeadCodeElimination.s"

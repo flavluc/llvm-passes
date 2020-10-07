@@ -15,10 +15,8 @@ if(NOT LLVM_ENABLE_RTTI)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
 endif()
 
-add_library (DeadCodeElimination SHARED
-DeadCodeElimination.cpp
-lib/RangeAnalysis.cpp
-lib/vSSA.cpp
-)
+add_library (DeadCodeElimination SHARED DeadCodeElimination.cpp)
+add_library (RangeAnalysis SHARED lib/RangeAnalysis.cpp)
+add_library (vSSA SHARED lib/vSSA.cpp)
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")

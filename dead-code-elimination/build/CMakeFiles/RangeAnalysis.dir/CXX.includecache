@@ -64,15 +64,7 @@ string
 chrono
 -
 
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/DeadCodeElimination.cpp
-utility
--
-vector
--
-llvm/IR/LegacyPassManager.h
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/llvm/IR/LegacyPassManager.h
-llvm/Transforms/Utils/Local.h
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/llvm/Transforms/Utils/Local.h
+/home/mab/Desktop/college/aep/tps/dead-code-elimination/lib/RangeAnalysis.cpp
 RangeAnalysis.hpp
-/home/mab/Desktop/college/aep/tps/dead-code-elimination/RangeAnalysis.hpp
+/home/mab/Desktop/college/aep/tps/dead-code-elimination/lib/RangeAnalysis.hpp
 

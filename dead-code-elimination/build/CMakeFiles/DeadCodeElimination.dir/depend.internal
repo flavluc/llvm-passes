@@ -4,9 +4,3 @@
 CMakeFiles/DeadCodeElimination.dir/DeadCodeElimination.cpp.o
  ../include/RangeAnalysis.hpp
  /home/mab/Desktop/college/aep/tps/dead-code-elimination/DeadCodeElimination.cpp
-CMakeFiles/DeadCodeElimination.dir/lib/RangeAnalysis.cpp.o
- ../include/RangeAnalysis.hpp
- /home/mab/Desktop/college/aep/tps/dead-code-elimination/lib/RangeAnalysis.cpp
-CMakeFiles/DeadCodeElimination.dir/lib/vSSA.cpp.o
- ../include/vSSA.h
- /home/mab/Desktop/college/aep/tps/dead-code-elimination/lib/vSSA.cpp
