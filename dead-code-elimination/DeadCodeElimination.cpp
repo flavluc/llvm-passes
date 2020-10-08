@@ -1,10 +1,22 @@
+#define DEBUG_TYPE "dead-code-elimination"
+
 #include <utility>
 #include <vector>
 
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/Utils/Local.h"
+#include "llvm/ADT/Statistic.h"
+#include "llvm/Pass.h"
+#include "llvm/IR/Function.h"
+#include "llvm/IR/User.h"
+#include "llvm/PassAnalysisSupport.h"
+#include "llvm/Support/raw_ostream.h"
+#include "llvm/IR/IRBuilder.h"
 
-#include "RangeAnalysis.hpp"
+#include "RangeAnalysis.h"
+
+STATISTIC(InstructionsEliminated, "Number of instructions eliminated");
+STATISTIC(BasicBlocksEliminated, "Number of basic blocks entirely eliminated");
 
 using namespace llvm;
 using namespace std;
@@ -55,17 +67,55 @@ namespace {
     CI->replaceAllUsesWith(C);
   }
 
-  void removeDeadCode(Function &Fn, InterProceduralRA<Cousot> &Ra) {
+  void removeInstructions(vector<Instruction*> Is) {
+    for (Instruction* I : Is)
+      if(I != NULL)
+        RecursivelyDeleteTriviallyDeadInstructions(I);
+  }
+
+  pair<int, int> amountOfBBAndI(Function &Fn) {
+    unsigned int amountBB = 0, amountI = 0;
+
+    for (BasicBlock &BB : Fn){
+      amountBB += 1;
+      amountI += distance(BB.begin(), BB.end());
+    }
+
+    return make_pair(amountBB, amountI);
+  }
+
+
+  void generateStatistics(Function &Fn, pair<int, int> oldAmount, pair<int, int> newAmount) {
+
+    auto [oldAmountBB, oldAmountI] = oldAmount;
+    auto [newAmountBB, newAmountI] = newAmount;
+
+    BasicBlocksEliminated = oldAmountBB - newAmountBB;
+    InstructionsEliminated = oldAmountI - newAmountI;
+  }
+
+  bool removeDeadCode(Function &Fn, InterProceduralRA<Cousot> &Ra) {
+
+    vector<Instruction*> instructions;
+    auto oldAmount = amountOfBBAndI(Fn);
 
     for (BasicBlock &BB : Fn)
       for (Instruction &I : BB)
         if (ICmpInst* CI = dyn_cast<ICmpInst>(&I)){
-          
           auto [replace, _const] = shouldReplaceByConst(CI, Ra);
           if (replace){
             replaceInstBy(CI, _const);
+            instructions.push_back(&I);
           }
         }
+
+    removeInstructions(instructions);
+    removeUnreachableBlocks(Fn);
+
+    auto newAmount = amountOfBBAndI(Fn);
+    generateStatistics(Fn, oldAmount, newAmount);
+
+    return oldAmount != newAmount;
   }
 
   struct LegacyDeadCodeElimination : public FunctionPass {
@@ -76,8 +126,8 @@ namespace {
 
       InterProceduralRA<Cousot> &Ra = getAnalysis<InterProceduralRA<Cousot>>();
 
-      removeDeadCode(Fn, Ra);
-      return true;
+      bool modified = removeDeadCode(Fn, Ra);
+      return modified;
     }
 
     virtual void getAnalysisUsage(AnalysisUsage &AU) const {
