@@ -1,12 +1,12 @@
-
 # How to run:
 
 Inside of the pass folder run:
 
 ```
+export LLVM_DIR=<installation/dir/of/llvm>
 mkdir build
 cd build
-cmake -DLT_LLVM_INSTALL_DIR=<installation/dir/of/llvm> ..
+CXX=$LLVM_DIR/bin/clang++ cmake -DLT_LLVM_INSTALL_DIR=$LLVM_DIR ..
 make
 ```
 

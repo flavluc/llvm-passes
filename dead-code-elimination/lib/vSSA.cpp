@@ -50,27 +50,6 @@ bool vSSA::runOnFunction(Function &F) {
 
 void vSSA::createSigmasIfNeeded(BasicBlock *BB) {
   Instruction *ti = BB->getTerminator();
-  // If the condition used in the terminator instruction is a Comparison
-  // instruction:
-  // for each operand of the CmpInst, create sigmas, depending on some
-  // conditions
-  /*
-  if(isa<BranchInst>(ti)){
-          BranchInst * bc = cast<BranchInst>(ti);
-          if(bc->isConditional()){
-                  Value * cond = bc->getCondition();
-                  CmpInst *comparison = dyn_cast<CmpInst>(cond);
-                  for (User::const_op_iterator it = comparison->op_begin(), e =
-  comparison->op_end(); it != e; ++it) {
-                          Value *operand = *it;
-                          if (isa<Instruction>(operand) ||
-  isa<Argument>(operand)) {
-                                  insertSigmas(ti, operand);
-                          }
-                  }
-          }
-  }
-  */
 
   // CASE 1: Branch Instruction
   BranchInst *bi = NULL;
@@ -306,23 +285,6 @@ SmallVector<PHINode *, 25> vSSA::insertPhisForSigma(Value *V, PHINode *sigma) {
     // basicblock in the frontier, and this BB dominates any use of the Value, a
     // vSSA_PHI is needed
     if (condition) {
-
-      //			// Need to discover from which BasicBlock the
-      //sigma value comes from
-      //			// To do that, we need to find which predecessor
-      //of BB_infrontier is dominated by BB_next
-      //			BasicBlock *predBB = NULL;
-      //
-      //			for (pred_iterator PI =
-      //pred_begin(BB_infrontier), PE = pred_end(BB_infrontier); PI != PE; ++PI)
-      //{
-      //				predBB = *PI;
-      //
-      //				if (DT_->dominates(BB, predBB)) {
-      //					break;
-      //				}
-      //			}
-
       // Create the vSSA_PHI, and put the phi node in the deques
       // NumReservedValues is a hint for the number of incoming edges that this
       // phi node will have (use 0 if you really have no idea).
@@ -371,23 +333,6 @@ void vSSA::insertPhisForPhi(Value *V, PHINode *phi) {
     // basicblock in the frontier, and this BB dominates any use of the Value, a
     // vSSA_PHI is needed
     if (condition) {
-
-      //			// Need to discover from which BasicBlock the
-      //sigma value comes from
-      //			// To do that, we need to find which predecessor
-      //of BB_infrontier is dominated by BB_next
-      //			BasicBlock *predBB = NULL;
-      //
-      //			for (pred_iterator PI =
-      //pred_begin(BB_infrontier), PE = pred_end(BB_infrontier); PI != PE; ++PI)
-      //{
-      //				predBB = *PI;
-      //
-      //				if (DT_->dominates(BB, predBB)) {
-      //					break;
-      //				}
-      //			}
-
       // Create the vSSA_PHI, and put the phi node in the deques
       PHINode *vssaphi = PHINode::Create(V->getType(), 0, Twine(vSSA_PHI),
                                          &(BB_infrontier->front()));

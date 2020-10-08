@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.4.3)
-project(dcc-888-tp-1)
+project(bytecode-to-dot)
 
 #===============================================================================
 # 1. LOAD LLVM CONFIGURATION

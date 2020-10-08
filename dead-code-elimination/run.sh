@@ -6,7 +6,7 @@ then
   exit 1
 fi
 
-clang++ -Xclang -disable-O0-optnone -S -emit-llvm -o out.bc $1
+$LLVM_DIR/bin/clang++ -Xclang -disable-O0-optnone -S -emit-llvm -o out.bc $1
 
 $LLVM_DIR/bin/opt -instnamer -mem2reg -break-crit-edges -S -o out.bc out.bc
 

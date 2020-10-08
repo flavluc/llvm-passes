@@ -6,12 +6,6 @@
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/Utils/Local.h"
 #include "llvm/ADT/Statistic.h"
-#include "llvm/Pass.h"
-#include "llvm/IR/Function.h"
-#include "llvm/IR/User.h"
-#include "llvm/PassAnalysisSupport.h"
-#include "llvm/Support/raw_ostream.h"
-#include "llvm/IR/IRBuilder.h"
 
 #include "RangeAnalysis.h"
 
@@ -130,7 +124,7 @@ namespace {
       return modified;
     }
 
-    virtual void getAnalysisUsage(AnalysisUsage &AU) const {
+    virtual void getAnalysisUsage(AnalysisUsage &AU) const override {
       AU.setPreservesAll();
       AU.addRequired<InterProceduralRA<Cousot>>();
     }
